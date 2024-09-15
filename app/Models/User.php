@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,4 +45,38 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function isAdmin()
+    {
+    return $this->role === 'admin';
+    }
+
+    public function archivedSystemStats()
+    {
+    return $this->hasMany(ArchivedSystemStat::class);
+    }
+    public function archivedWeeklyStats()
+    {
+        return $this->hasMany(ArchivedWeeklyStat::class, 'user_id');
+    }
+    public function competitions()
+    {
+        return $this->hasMany(Competition::class, 'user_id');
+    }
+    public function currentSystemStats()
+    {
+        return $this->hasMany(CurrentSystemStat::class, 'user_id');
+    }
+    public function trainingSessions()
+    {
+        return $this->hasMany(TrainingSession::class, 'user_id');
+    }
+    public function trainingSystems()
+    {
+        return $this->hasMany(TrainingSystem::class, 'user_id');
+    }
+    public function weeklyStats()
+{
+    return $this->hasMany(WeeklyStat::class, 'user_id');
+}
+
 }
