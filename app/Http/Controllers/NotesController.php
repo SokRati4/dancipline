@@ -14,29 +14,25 @@ use Carbon\Carbon;
 
 class NotesController extends Controller
 {
-    // Wyświetlanie listy notatek (z paginacją)
     public function index()
 {
-    // Pobierz wszystkie sesje użytkownika i pogrupuj je według system_id
     $userId = Auth::id();
     $sessions = TrainingSession::where('user_id', $userId)
                 ->where('started', 1)
                 ->where('completed',1)
-                ->with('trainingSystem') // Załaduj powiązane systemy treningowe
+                ->with('trainingSystem') 
                 ->get()
                 ->groupBy('system_id');
 
     return view('notes.index', compact('sessions'));
 }
 
-    // Formularz tworzenia nowej notatki
     public function create(Request $request)
     {
     $session_id = $request->query('session_id'); 
     return view('notes.create', ['session_id' => $session_id]);
     }
 
-    // Zapisanie nowej notatki w bazie danych
     public function store(Request $request)
 {
     $request->validate([
@@ -45,7 +41,6 @@ class NotesController extends Controller
         'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
     ]);
 
-    // Tworzenie nowej notatki
     $note = new TrainingNote([
         'session_id' => $request->session_id,
         'user_id' => Auth::id(),
@@ -54,20 +49,16 @@ class NotesController extends Controller
 
     $note->save();
 
-    // Aktualizacja pola note_id w tabeli training_sessions
     $session = TrainingSession::find($request->session_id);
     if ($session) {
         $session->note_id = $note->id;
         $session->save();
     }
 
-    // Aktualizacja załączników z tej samej sesji HTTP
     if ($request->hasFile('image')) {
-        // Zapisz obraz w publicznym folderze 'images'
         $file = $request->file('image');
         $path = $file->store('images', 'public');
 
-        // Utwórz lub zaktualizuj załącznik
         $attachment = Attachment::updateOrCreate(
             ['note_id' => $note->id],
             [

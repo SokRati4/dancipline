@@ -7,7 +7,6 @@ class ScheduleList
 {
     public static function register(Schedule $schedule)
     {
-        // Dodaj zadania do harmonogramu
         $schedule->command('stats:archive')->everyMinute();
     }
 }

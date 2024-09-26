@@ -30,7 +30,6 @@ class StatisticsController extends Controller
         $trainingTypeIndividualPercentage = $totalSessions > 0 ? ($sessions->where('type', 'individual')->count() / $totalSessions) * 100 : 0;
         $trainingTypeGroupPercentage = $totalSessions > 0 ? ($sessions->where('type', 'group')->count() / $totalSessions) * 100 : 0;
 
-        // Oblicz średnią intensywność treningów
         $averageIntensity = $totalSessions > 0 ? $sessions->avg('intensity') : 0;
 
         $stats = CurrentSystemStat::updateOrCreate(
@@ -59,19 +58,15 @@ class StatisticsController extends Controller
     }
     public function generateWeekStats($userId, $systemId)
     {
-        // Ustaw aktualny czas
         $now = Carbon::now();
 
-        // Ustaw początek i koniec tygodnia
         $weekStart = $now->copy()->startOfWeek()->format('Y-m-d');
         $weekEnd = $now->copy()->endOfWeek()->addDay()->format('Y-m-d');
 
-        // Pobierz sesje treningowe z tego tygodnia
         $sessions = TrainingSession::where('system_id', $systemId)
             ->whereBetween('start_datetime', [$weekStart, $weekEnd])
             ->get();
 
-        // Oblicz statystyki tygodniowe
         $totalTrainingMinutes = ($sessions->where('completed', 1)->where('started', 1)->sum('duration_hours'))*60;
 
         $completedSessions = $sessions->where('completed', 1)->where('started', 1)->count();
@@ -83,7 +78,6 @@ class StatisticsController extends Controller
             return Carbon::parse($session->start_datetime)->format('Y-m-d');
         })->count();
 
-        // Utwórz nowy obiekt WeeklyStat
         $weeklyStats = WeeklyStat::updateOrCreate(
             [
                 'user_id' => $userId,
@@ -101,39 +95,7 @@ class StatisticsController extends Controller
             'success' => true, 'weeklyStats' => $weeklyStats
         ]);
     }
-    // public function archiveWeeklyStats()
-    // {
-    //     $now = Carbon::now();
-
-    //     // Sprawdzamy, czy aktualny dzień to poniedziałek
-    //     // if ($now->dayOfWeek != Carbon::MONDAY) {
-    //     //     return;
-    //     // }
-
-    //     $weekStart = $now->copy()->startOfWeek()->subWeek()->format('Y-m-d');
-    //     $weekEnd = $now->copy()->endOfWeek()->subWeek()->format('Y-m-d');
-
-    //     $users = User::all();
-
-    //     foreach ($users as $user) {
-    //         $weeklyStat = WeeklyStat::where('user_id', $user->id)
-    //             ->whereBetween('start_datetime', [$weekStart, $weekEnd])
-    //             ->get();
-
-    //         if ($weeklyStat->total_training_minutes > 0) {
-
-
-    //             ArchivedWeeklyStat::create([
-    //                 'user_id' => $user->id,
-    //                 'week_start_date' => $weeklyStat->week_start_date,
-    //                 'total_training_minutes' => $weeklyStat->total_training_minutes,
-    //                 'completed_sessions_percentage' => $weeklyStat->completed_sessions_percentage,
-    //                 'finals_danced' => $weeklyStat->finals_danced,
-    //                 'days_trained' => $weeklyStat->days_trained
-    //             ]);
-    //         }
-    //     }
-    // }
+    
     public function indexArchivedWeeklyStats(){
         $userId = Auth::id();
         $archivedWeeklyStats = ArchivedWeeklyStat::where('user_id', $userId )

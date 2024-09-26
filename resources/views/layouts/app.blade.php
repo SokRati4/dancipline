@@ -13,7 +13,6 @@
     <title>@yield('title', 'Dancipline')</title>
     @yield('custom_styles')
     <style>
-        /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -99,7 +98,6 @@
 
         }
 
-        /* Main Container */
         .main-container {
             display: flex;
             flex-direction: column;
@@ -124,7 +122,6 @@
                 margin: 0 auto;
             }
 
-        /* Footer */
         footer {
     background-color: #1f1f1f;
     flex-shrink: 0;
@@ -161,7 +158,6 @@ footer blockquote footer {
     font-weight: bold;
 }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             header nav {
                 flex-direction: column;
@@ -185,7 +181,6 @@ footer blockquote footer {
             margin: 10px;
         }
 
-/* CSS */
 .button-27 {
   appearance: none;
   background-color: #1f1f1f;
@@ -235,39 +230,35 @@ h1,h2,h3,h4 {
 
 }
 .fc-day-grid-event .fc-content {
-    white-space: normal !important; /* Umożliwia zawijanie tekstu w komórkach */
+    white-space: normal !important; 
 }
-/* Styl dla wydarzeń */
 .fc-event, .fc-event-dot {
-    background-color: #333; /* Ciemnoszary dla tła wydarzeń */
-    border-color: #333; /* Ciemnoszary dla obramowania */
-    color: #fff; /* Biały dla tekstu w wydarzeniach */
-    height: auto !important; /* Pozwala na automatyczne dopasowanie wysokości do zawartości */
-    line-height: 1.5; /* Opcjonalnie zwiększa odstępy między liniami */
+    background-color: #333; 
+    border-color: #333; 
+    color: #fff; 
+    height: auto !important; 
+    line-height: 1.5; 
 }
 
 
-/* Styl dla tła kalendarza */
 .fc-bg {
-    background-color: #1f1f1f; /* Czarny dla tła kalendarza */
+    background-color: #1f1f1f; 
 }
 
 .fc-day-number{
     color: #fff;
 }
-/* Styl dla nagłówków dni */
 .fc-day-header {
-    background-color: #1f1f1f; /* Czarny dla nagłówków dni */
-    color: #fff; /* Biały dla tekstu w nagłówkach */
+    background-color: #1f1f1f;
+    color: #fff; 
 }
 
-/* Styl dla ikon akcji */
 .event-actions .fa-edit {
-    color: #fff; /* Biały dla ikony edycji */
+    color: #fff; 
 }
 
 .event-actions .fa-trash {
-    color: #fff; /* Biały dla ikony usuwania */
+    color: #fff; 
 }
 .weekly{
             border: 2px solid #333;
@@ -278,14 +269,14 @@ h1,h2,h3,h4 {
             padding: 100px;
         }
         .weekly h1 {
-            font-size: 64px; /* Zmień na preferowany rozmiar */
+            font-size: 64px;
         }
         .subtitle {
-            font-size: 17px; /* Rozmiar czcionki dla podpisu */
-            color: #888; /* Szary kolor tekstu */
-            font-style: italic; /* Pochylenie tekstu */
-            text-align: center; /* Wyśrodkowanie tekstu pod wartością */
-            margin-top: 10px; /* Odstęp od głównej wartości */
+            font-size: 17px; 
+            color: #888; 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 10px; 
         }
     </style>
 </head>

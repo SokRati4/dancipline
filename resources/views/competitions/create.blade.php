@@ -6,7 +6,6 @@
         box-sizing: border-box;
     }
 
-    /* Form Container */
     .form-container {
         background-color: #2a2a2a;
         padding: 20px;
@@ -14,10 +13,10 @@
         max-width: 500px;
         margin: 20px auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        overflow: visible; /* Upewnij się, że wszystko w kontenerze jest widoczne */
+        overflow: visible; 
     }
 
-    /* Form Elements */
+
     .form-container label {
         display: block;
         color: #ffffff;
@@ -45,7 +44,6 @@
         outline: none;
     }
 
-    /* Form Heading */
     .form-container h1 {
         text-align: center;
         color: #ffffff;
@@ -60,28 +58,22 @@
     <h1>Utwórz nowy zawod</h1>
 
     <form action="{{ route('competitions.store') }}" method="POST">
-        @csrf <!-- Wstaw token CSRF dla zabezpieczenia formularza -->
+        @csrf 
 
-        <!-- Ukryte pole dla user_id -->
         <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
-        <!-- Pole dla start_date -->
         <label for="start_date">Data rozpoczęcia:</label>
         <input type="date" id="start_date" name="start_date" value="{{ $date }}" required>
 
-        <!-- Pole dla end_date -->
         <label for="end_date">Data zakończenia:</label>
         <input type="date" id="end_date" name="end_date" required>
 
-        <!-- Pole dla name -->
         <label for="name">Nazwa:</label>
         <input type="text" id="name" name="name" required>
 
-        <!-- Pole dla location -->
         <label for="location">Miejsce:</label>
         <input type="text" id="location" name="location" required>
 
-        <!-- Pole dla type -->
         <label for="type">Typ:</label>
         <select id="type" name="type" required>
             <option value="regionalny">Regionalny</option>
@@ -94,7 +86,6 @@
             <option value="International Dance Festival">International Dance Festival</option>
         </select>
 
-        <!-- Pole dla category -->
         <label for="category">Kategoria:</label>
         <select id="category" name="category" required>
             <option value="u10">U10</option>
@@ -107,7 +98,6 @@
             <option value="professional">Professional</option>
         </select>
 
-        <!-- Przycisk submit -->
         <button type="submit" class="button-27">Zapisz</button>
     </form>
 </div>

@@ -55,15 +55,15 @@
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
-  display: inline-flex; /* Ustawia przycisk jako elastyczny kontener */
-  align-items: center; /* Wyrównanie ikon w pionie */
-  justify-content: center; /* Wyrównanie ikon w poziomie */
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
   font-family: 'Roobert', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  padding: 10px; /* Zmniejszenie paddingu */
-  width: auto; /* Ustawienie szerokości przycisku zgodnie z treścią */
+  padding: 10px; 
+  width: auto; 
   margin-right: 5px;
-  margin-bottom: 5px; /* Odstęp między przyciskami */
+  margin-bottom: 5px; 
   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
   user-select: none;
   -webkit-user-select: none;

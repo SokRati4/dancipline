@@ -2,9 +2,9 @@
 @section('custom_styles')
 <style>
 table th, table td {
-    padding: 15px; /* Zwiększa przestrzeń w komórkach */
-    font-size: 18px; /* Zwiększa rozmiar czcionki */
-    border-bottom: 2px solid #ccc; /* Zwiększa grubość linii pod wierszem */
+    padding: 15px; 
+    font-size: 18px; 
+    border-bottom: 2px solid #ccc; 
 }
 
 th {
@@ -12,7 +12,7 @@ th {
     text-transform: uppercase;
 }
 tr {
-    border-bottom: 2px solid #ccc; /* Zwiększa grubość linii */
+    border-bottom: 2px solid #ccc; 
 }
 
 </style>
@@ -45,14 +45,14 @@ tr {
                     <td>
                         <form action="{{ route('admin.users.edit', $user->id) }}" method="GET"  style="display:inline;">
                             <button class="button-27-icon">
-                                <i class="fas fa-edit"></i> <!-- Ikona edycji -->
+                                <i class="fas fa-edit"></i> 
                             </button>
                         </form>
                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="button-27-icon" onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash-alt"></i> <!-- Ikona usunięcia -->
+                                <i class="fas fa-trash-alt"></i> 
                             </button>
                         </form>
                     </td>

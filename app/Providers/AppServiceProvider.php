@@ -22,10 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Pobierz losowy cytat z bazy danych
         $quote = Quote::inRandomOrder()->first();
 
-        // Udostępnij cytat we wszystkich widokach
         View::share('quote', $quote);
         Carbon::setLocale('pl');
     }

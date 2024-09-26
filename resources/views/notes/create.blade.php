@@ -107,7 +107,6 @@
     });
 
 
-    // Przekazanie danych z Quill do ukrytego pola przed przesłaniem formularza
     document.querySelector('form[action="{{ route('notes.store') }}"]').onsubmit = function() {
     document.querySelector('#content').value = quill.root.innerHTML;
     };
@@ -115,13 +114,12 @@
 
 
 
-    // Funkcja do przesyłania obrazu na serwer
     function saveToServer(file, sessionId, callback) {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('session_id', sessionId); // Dodajemy identyfikator sesji HTTP
+        formData.append('session_id', sessionId); 
 
-        fetch('/upload-image', { // URL musi odpowiadać trasie do przesyłania obrazu
+        fetch('/upload-image', { 
             method: 'POST',
             body: formData,
             headers: {
@@ -131,7 +129,7 @@
         .then(response => response.json())
         .then(result => {
             if (result.url) {
-                callback(result.url); // Zwracamy URL obrazu z odpowiedzi serwera
+                callback(result.url); 
             } else {
                 console.error('Błąd przy zapisywaniu obrazu:', result);
             }

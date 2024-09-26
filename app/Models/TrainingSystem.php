@@ -9,13 +9,8 @@ class TrainingSystem extends Model
 {
     use HasFactory;
 
-    /**
- * Get the archived system stats for the training system.
- */
-     // Nazwa tabeli w bazie danych
      protected $table = 'training_systems';
 
-     // Pola, które mogą być masowo przypisywane
      protected $fillable = [
          'user_id',
          'name',
@@ -29,7 +24,6 @@ class TrainingSystem extends Model
          'updated_at'
      ];
  
-     // Pola, które powinny być traktowane jako daty
      protected $dates = [
          'start_date',
          'end_date',

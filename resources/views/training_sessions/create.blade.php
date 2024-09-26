@@ -6,7 +6,7 @@
         box-sizing: border-box;
     }
 
-    /* Form Container */
+
     .form-container {
         background-color: #2a2a2a;
         padding: 20px;
@@ -14,10 +14,9 @@
         max-width: 500px;
         margin: 20px auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        overflow: visible; /* Upewnij się, że wszystko w kontenerze jest widoczne */
+        overflow: visible; 
     }
 
-    /* Form Elements */
     .form-container label {
         display: block;
         color: #ffffff;
@@ -49,14 +48,12 @@
         outline: none;
     }
 
-    /* Form Heading */
     .form-container h1 {
         text-align: center;
         color: #ffffff;
         margin-bottom: 20px;
     }
 
-    /* Checkboxes */
     .form-container input[type="checkbox"] {
         display: none;
     }
@@ -70,7 +67,7 @@
         user-select: none;
         display: inline-block;
         margin-bottom: 15px;
-        margin-right: 15px; /* Przerwa między checkboxami */
+        margin-right: 15px;
     }
 
     .form-container input[type="checkbox"] + label:before {
@@ -101,15 +98,14 @@
         border-radius: 2px;
     }
 
-    /* Layout for checkboxes (flexbox) */
     #dances_planned_container {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px; /* Odstęp między checkboxami */
+        gap: 10px; 
     }
 
     #dances_planned_container div {
-        flex: 1 1 45%; /* Każdy checkbox zajmuje około 45% szerokości rodzica */
+        flex: 1 1 45%; 
         display: flex;
         align-items: center;
     }
@@ -118,7 +114,6 @@
         margin-left: 5px;
     }
 
-    /* Ensure last checkboxes are properly aligned */
     .form-container .checkbox-container {
         margin-bottom: 10px;
         display: flex;
@@ -131,13 +126,13 @@
     }
 
     .checkbox-container {
-        display: block; /* Zmień na block, aby uniknąć problemów z wyświetlaniem */
+        display: block; 
         margin-bottom: 15px;
-        padding-left: 25px; /* Opcjonalne wyśrodkowanie */
+        padding-left: 25px; 
     }
 
     .form-container .checkbox-container:last-child {
-        margin-bottom: 15px; /* Ensure there's space for the last checkbox */
+        margin-bottom: 15px; 
     }
 </style>
 @endsection
@@ -175,7 +170,6 @@
 
         <label for="dances_planned">Planowane tańce:</label>
         <div id="dances_planned_container">
-            <!-- Opcje tańców będą tutaj dynamicznie dodawane -->
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="five_dances" name="five_dances" value="1">
@@ -237,7 +231,7 @@
 
             function setMinTimeForStart() {
                 const now = moment.tz(moment(), moment.tz.guess());
-                now.add(5, 'minutes'); // Dodaj 5 minut do aktualnego czasu
+                now.add(5, 'minutes'); 
                 const isoString = now.format('YYYY-MM-DDTHH:mm');
                 startDateTimeInput.min = isoString;
                 startDateTimeInput.value = isoString;

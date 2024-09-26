@@ -15,37 +15,37 @@
     }
     .row {
     display: flex;
-    flex-wrap: wrap; /* Umożliwia zawijanie kart do nowej linii */
-    gap: 20px; /* Dystans pomiędzy kartami */
-    justify-content: space-between; /* Rozkłada karty równomiernie */
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: space-between; 
 }
 
 .education-item {
-    flex: 0 1 calc(33.333% - 20px); /* Trzy kartki w linii z uwzględnieniem odstępów */
-    box-sizing: border-box; /* Upewnij się, że padding i border są uwzględniane w szerokości */
-    overflow: hidden; /* Ukryj zawartość, która wykracza poza kartę */
-    border: 1px solid #ddd; /* Dodaj obramowanie */
-    border-radius: 8px; /* Zaokrąglenie rogów */
-    background-color: #2a2a2a; /* Tło kartki */
+    flex: 0 1 calc(33.333% - 20px); 
+    box-sizing: border-box; 
+    overflow: hidden; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    background-color: #2a2a2a; 
     display: flex;
     flex-direction: column;
     padding: 15px;
-    color: #ffffff; /* Padding wewnętrzny */
+    color: #ffffff;
 }
 
 .education-item h3 {
-    font-size: 18px; /* Rozmiar czcionki tytułu */
-    margin: 0 0 10px 0; /* Odstęp od opisu */
+    font-size: 18px;
+    margin: 0 0 10px 0; 
 }
 
 .education-item p {
-    display: -webkit-box; /* Używa flexbox w WebKit do kontrolowania układu */
-    -webkit-line-clamp: 3; /* Ogranicza tekst do 5 linii */
-    -webkit-box-orient: vertical; /* Ustawia orientację flexboxu na pionową */
-    overflow: hidden; /* Ukrywa tekst, który wykracza poza kontener */
-    text-overflow: ellipsis; /* Dodaje „...” na końcu tekstu */
-    margin: 0 0 10px 0; /* Odstęp od przycisku */
-    line-height: 1.5; /* Wysokość linii */
+    display: -webkit-box; 
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    margin: 0 0 10px 0; 
+    line-height: 1.5; 
     height: 4.5em;
 
 }
@@ -53,8 +53,8 @@
 
 @media (max-width: 768px) {
     .education-item {
-        flex: 1 1 100%; /* Na mniejszych ekranach, karty zajmują pełną szerokość */
-        width: auto; /* Usuń stałą szerokość */
+        flex: 1 1 100%; 
+        width: auto; 
     }
 }
     

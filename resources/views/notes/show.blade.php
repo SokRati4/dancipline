@@ -5,15 +5,15 @@
         font-size: 1.2em;
     }
     .note-image {
-        text-align: center; /* Centruje obrazek */
+        text-align: center; 
         margin-bottom: 20px;
     }
 
     .image-rounded {
         max-width: 200px;
-        border-radius: 15px; /* Zaokrąglenie rogów */
-        border: 3px solid #1f1f1f; /* Obwódka w kolorze #1f1f1f */
-        cursor: zoom-in; /* Styl kursora */
+        border-radius: 15px; 
+        border: 3px solid #1f1f1f; 
+        cursor: zoom-in; 
     }
     * {
   -webkit-box-sizing:border-box;

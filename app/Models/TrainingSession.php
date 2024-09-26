@@ -10,10 +10,8 @@ class TrainingSession extends Model
 {
     use HasFactory;
 
-    // Nazwa tabeli w bazie danych
     protected $table = 'training_sessions';
 
-    // Pola, które mogą być masowo przypisywane
     protected $fillable = [
         'user_id',
         'system_id',
@@ -36,7 +34,6 @@ class TrainingSession extends Model
         'updated_at'
     ];
 
-    // Pola, które powinny być traktowane jako daty
     protected $dates = [
         'start_datetime',
         'end_datetime',
@@ -48,18 +45,15 @@ class TrainingSession extends Model
 
 
 
-    // Relacja z modelem User
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Relacja z modelem TrainingSystem
     public function trainingSystem()
     {
         return $this->belongsTo(TrainingSystem::class, 'system_id');
     }
-    // Relacja z modelem TrainingNote
     public function trainingNote()
     {
         return $this->hasOne(TrainingNote::class, 'id', 'note_id');

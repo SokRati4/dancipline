@@ -17,17 +17,14 @@ class TrainingSessionController extends Controller
 
     public function index()
     {
-        // Pobierz wszystkie sesje treningowe (przykładowo)
         $trainingSessions = TrainingSession::all();
 
-        // Zwróć widok z danymi
         return view('training_sessions.index', compact('trainingSessions'));
     }
 
 
     public function create()
     {
-        // Zwróć widok formularza do tworzenia nowej sesji treningowej
         return view('training_sessions.create');
     }
 
@@ -37,7 +34,6 @@ class TrainingSessionController extends Controller
         
 
         $systemId = $request->system_id;
-        // Walidacja danych wejściowych
         $request->validate([
             'type' => 'required|string|max:255',
             'start_datetime' => 'required|date',
@@ -69,14 +65,12 @@ class TrainingSessionController extends Controller
         $session->five_dances = $request->has('five_dances') ? (int)$request->five_dances : 0;
         $session->with_partner = $request->has('with_partner') ? (int)$request->with_partner : 0;
     
-        // Utwórz nową sesję treningową na podstawie danych z formularza
         $session->save();
 
         app(TrainingSystemController::class)->updateCompletionPercentage($session->system_id);
         app(StatisticsController::class)->generateStats(Auth::id(), $session->system_id);
         app(StatisticsController::class)->generateWeekStats(Auth::id(), $session->system_id);
     
-        // Przekieruj na widok kalendarza
         return redirect()->route('training_systems.schedule', ['trainingSystem' => $request->system_id])
             ->with('success', 'Sesja treningowa została pomyślnie dodana.');
     }
@@ -84,17 +78,14 @@ class TrainingSessionController extends Controller
 
     public function show($id)
     {
-        // Znajdź sesję treningową po ID
         $trainingSession = TrainingSession::findOrFail($id);
 
-        // Zwróć widok szczegółowy sesji treningowej
         return view('training_sessions.show', compact('trainingSession'));
     }
 
 
     public function edit($id, $system_id)
     {
-        // Znajdź sesję treningową po ID
         $trainingSession = TrainingSession::findOrFail($id);
         $trainingSystem = TrainingSystem::findOrFail($system_id);
         $systemStyle = $trainingSystem->dance_style;
@@ -102,7 +93,6 @@ class TrainingSessionController extends Controller
         $trainingSession->start_datetime = Carbon::parse($trainingSession->start_datetime)->format('Y-m-d\TH:i');
         $trainingSession->end_datetime = Carbon::parse($trainingSession->end_datetime)->format('Y-m-d\TH:i');
 
-        // Zwróć widok formularza edycji sesji treningowej
         return view('training_sessions.edit', compact('trainingSession','system_id','systemStyle'));
     }
 
@@ -138,7 +128,6 @@ class TrainingSessionController extends Controller
     app(StatisticsController::class)->generateWeekStats(Auth::id(), $trainingSession->system_id);
 
 
-    // Przekieruj na widok kalendarza
     return redirect()->route('training_systems.schedule', ['trainingSystem' => $system_id])
         ->with('success', 'Sesja treningowa została pomyślnie zaktualizowana.');
 }
@@ -147,7 +136,6 @@ class TrainingSessionController extends Controller
 
     public function destroy($id)
     {
-        // Znajdź sesję treningową po ID i usuń ją
         $trainingSession = TrainingSession::findOrFail($id);
         $system_id = $trainingSession->system_id;
         $trainingSession->delete();
@@ -155,7 +143,6 @@ class TrainingSessionController extends Controller
         app(StatisticsController::class)->generateStats(Auth::id(), $system_id);
         app(StatisticsController::class)->generateWeekStats(Auth::id(), $system_id);
 
-        // Przekieruj na widok lub zwróć odpowiedź
         return response()->json(['success' => true]);
     }
 
@@ -198,7 +185,6 @@ class TrainingSessionController extends Controller
     {
     $intensity = 0;
 
-    // Typ treningu
     switch ($type) {
         case 'individual':
             $intensity += 2;
@@ -214,7 +200,6 @@ class TrainingSessionController extends Controller
             break;
     }
 
-    // Styl sesji
     switch ($style) {
         case 'ST':
         case 'LA':
@@ -228,7 +213,6 @@ class TrainingSessionController extends Controller
             break;
     }
 
-    // Czas trwania sesji
     if ($durationHours >= 1 && $durationHours < 2) {
         $intensity += 1;
     } elseif ($durationHours >= 2 && $durationHours < 3) {
@@ -239,17 +223,14 @@ class TrainingSessionController extends Controller
         $intensity += 5;
     }
 
-    // Czynnik "five_dances"
     if ($fiveDances) {
         $intensity += 3;
     }
 
-    // Czynnik "with_partner"
     if ($withPartner) {
         $intensity += 2;
     }
 
-    // Normalizacja intensywności
     $maxintensity = 18;
     $intensity = ($intensity/$maxintensity)*10;
     return min($intensity, 10);

@@ -2,19 +2,19 @@
 @section('custom_styles')
 <style>
     .card-body p {
-        font-size: 1.2em; /* 2 razy większy niż domyślny rozmiar czcionki */
+        font-size: 1.2em; /
     }
     ul.best-results {
-        list-style-type: disc; /* Styl listy */
-        padding-left: 20px; /* Odstęp od lewej */
-        font-size: 1.2em; /* Rozmiar tekstu w liście */
+        list-style-type: disc; 
+        padding-left: 20px;
+        font-size: 1.2em; 
     }
     ul.best-results li {
-        margin-bottom: 5px; /* Odstęp pomiędzy elementami listy */
+        margin-bottom: 5px; 
     }
     .known-for {
         margin-top: 20px;
-        text-align: center; /* Wyśrodkowanie zawartości tekstowo */
+        text-align: center; 
     }
     h4 {
         font-size: 1.4em;
@@ -23,8 +23,8 @@
     .badge-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center; /* Wyśrodkowanie odznak */
-        gap: 20px; /* Odstępy pomiędzy odznakami */
+        justify-content: center; 
+        gap: 20px; 
     }
     .badge {
         display: inline-block;
@@ -48,8 +48,8 @@
                 <div class="card-body">
                     <p>{{ $legend->bio }}</p>
                     @php
-                        $results = explode('.', $legend->best_results); // Rozbicie tekstu na części
-                        $knownForItems = explode(',', $legend->known_for); // Dzielimy pole known_for na poszczególne osiągnięcia
+                        $results = explode('.', $legend->best_results); 
+                        $knownForItems = explode(',', $legend->known_for); 
                     @endphp
                                         @if (!empty($legend->known_for))
                                         <div class="known-for">

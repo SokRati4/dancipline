@@ -30,14 +30,14 @@
                     <td>
                         <form action="{{ route('admin.quotes.edit', $quote->id) }}" method="GET"  style="display:inline;">
                             <button class="button-27-icon">
-                                <i class="fas fa-edit"></i> <!-- Ikona edycji -->
+                                <i class="fas fa-edit"></i> 
                             </button>
                         </form>
                         <form action="{{ route('admin.quotes.destroy', $quote->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="button-27-icon" onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash-alt"></i> <!-- Ikona usunięcia -->
+                                <i class="fas fa-trash-alt"></i> 
                             </button>
                         </form>
                     </td>

@@ -23,11 +23,9 @@ class TrainingSystemController extends Controller
         $userId = Auth::id();
         $now = Carbon::now();
 
-        //dd("Current time: ", $now->toDateTimeString());
         if (Session::has('timezone')) {
             $now->setTimezone(Session::get('timezone'));
         }
-        // Pobierz aktualny system treningowy użytkownika
         $currentSystem = TrainingSystem::where('user_id', $userId)
             ->where('start_date', '<=', $now)
             ->where(function($query) use ($now) {
@@ -35,7 +33,6 @@ class TrainingSystemController extends Controller
                       ->orWhereNull('end_date');
             })
             ->first();
-        //dd("Current system: ", $currentSystem);
         $trainingSessions = [];
         $stats = null;
         $weeklyStats = null;
@@ -79,7 +76,6 @@ class TrainingSystemController extends Controller
         $userId = Auth::id();
         $now = Carbon::now();
 
-        // Sprawdź, czy użytkownik ma już aktywny system treningowy
         $hasActiveSystem = TrainingSystem::where('user_id', $userId)
             ->where('start_date', '<=', $now)
             ->where(function($query) use ($now) {
@@ -88,7 +84,6 @@ class TrainingSystemController extends Controller
             })
             ->exists();
 
-        // Jeśli użytkownik ma aktywny system, przekieruj z komunikatem
         if ($hasActiveSystem) {
             return redirect()->route('training_systems.index')->with('error', 'You already have an active training system.');
         }
@@ -100,8 +95,7 @@ class TrainingSystemController extends Controller
     public function store(Request $request)
     {
         $today = Carbon::now()->startOfDay();
-         // Walidacja danych
-         $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'start_date' => 'required|date|after_or_equal:'.$today,
@@ -110,10 +104,8 @@ class TrainingSystemController extends Controller
             'dance_style' => 'required|in:ST,LA,10 dances,Smooth',
         ]);
 
-        // Dodaj user_id do danych wejściowych
         $userID = Auth::id();
 
-        // Utwórz nowy system treningowy
         $system = new TrainingSystem();
         $system->user_id = $userID;
         $system->name = $request->name;
@@ -133,7 +125,6 @@ class TrainingSystemController extends Controller
 
     public function show(TrainingSystem $trainingSystem)
     {
-        // Upewnij się, że użytkownik ma dostęp do systemu treningowego
         $this->authorize('view', $trainingSystem);
 
         return view('training_systems.show', compact('trainingSystem'));
@@ -141,7 +132,6 @@ class TrainingSystemController extends Controller
 
     public function edit(TrainingSystem $trainingSystem)
     {
-        // Upewnij się, że użytkownik ma dostęp do systemu treningowego
         $this->authorize('update', $trainingSystem);
 
         return view('training_systems.edit', compact('trainingSystem'));
@@ -150,12 +140,9 @@ class TrainingSystemController extends Controller
 
     public function update(Request $request, TrainingSystem $trainingSystem)
     {
-        //dd($request->all());
-        // Upewnij się, że użytkownik ma dostęp do systemu treningowego
         $this->authorize('update', $trainingSystem);
         $today = Carbon::now()->startOfDay();
 
-        // Walidacja danych
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -166,7 +153,6 @@ class TrainingSystemController extends Controller
         ]);
         
 
-        // Aktualizacja danych systemu treningowego
         $trainingSystem->update($validated);
 
         return redirect()->route('training_systems.index')->with('success', 'Training system updated successfully.');
@@ -175,18 +161,14 @@ class TrainingSystemController extends Controller
 
     public function destroy(TrainingSystem $trainingSystem)
     {
-        // Upewnij się, że użytkownik ma dostęp do systemu treningowego
         $this->authorize('delete', $trainingSystem);
 
-        //$trainingSystem->trainingSessions()->delete();
         $trainingSessions = TrainingSession::where('system_id', $trainingSystem->id)->get();
 
-        // Usuń wszystkie sesje powiązane z systemem
         foreach ($trainingSessions as $session) {
             $session->delete();
         }
         $currentsystemstat = CurrentSystemStat::where('training_system_id', $trainingSystem->id)->first();
-        // Usuń system treningowy
         $currentsystemstat->delete();
         $trainingSystem->delete();
 
@@ -194,14 +176,11 @@ class TrainingSystemController extends Controller
     }
     public function schedule(TrainingSystem $trainingSystem)
 {
-    // Upewnij się, że użytkownik ma dostęp do systemu treningowego
     $this->authorize('view', $trainingSystem);
 
-    // Pobierz daty początkową i końcową systemu treningowego
     $startDate = $trainingSystem->start_date;
     $endDate = $trainingSystem->end_date;
 
-    // Pobierz wszystkie sesje treningowe dla tego systemu
     $trainingSessions = TrainingSession::where('system_id', $trainingSystem->id)->get();
 
     return view('training_systems.schedule', compact('trainingSystem', 'startDate', 'endDate', 'trainingSessions'));

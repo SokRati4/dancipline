@@ -11,7 +11,6 @@ class Tutorial extends Model
 
     protected $table = 'tutorials';
 
-    // Pola, które mogą być masowo przypisywane
     protected $fillable = [
         'title',
         'description',
@@ -22,7 +21,6 @@ class Tutorial extends Model
         'updated_at'
     ];
 
-    // Pola, które powinny być traktowane jako daty
     protected $dates = [
         'created_at',
         'updated_at'

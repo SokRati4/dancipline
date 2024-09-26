@@ -9,13 +9,13 @@ class EducationController extends Controller
 {
     public function index(Request $request)
     {
-        $filter = $request->input('filter', 'all'); // Domyślnie 'all'
+        $filter = $request->input('filter', 'all'); 
     
         if ($filter == 'tutorials') {
             $tutorials = Tutorial::all();
-            $dance_legends = collect(); // Pusta kolekcja
+            $dance_legends = collect();
         } elseif ($filter == 'legends') {
-            $tutorials = collect(); // Pusta kolekcja
+            $tutorials = collect(); 
             $dance_legends = DanceLegend::all();
         } else {
             $tutorials = Tutorial::all();

@@ -18,13 +18,11 @@ class NotifyUpcomingCompetitions implements ShouldQueue
 
     public function handle()
     {
-        // Znajdź wszystkie turnieje, które odbędą się za tydzień
         $competitions = Competition::all();
 
         foreach ($competitions as $competition) {
             $user = User::find($competition->user_id);
 
-            // Wyślij powiadomienie do użytkownika
             if ($user) {
                 $user->notify(new UpcomingCompetitionNotification($competition));
             }

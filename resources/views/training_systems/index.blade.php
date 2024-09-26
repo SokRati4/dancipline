@@ -2,15 +2,15 @@
 @section('custom_styles')
 <style>
 .carousel-item {
-            height: 250px; /* Adjust the height as needed */
+            height: 250px; 
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            border-radius: 15px; /* Rounded corners */
-            margin: 0; /* Add margin */
-            background-color: #1f1f1f; /* Light background color */
-            padding: 15px; /* Add padding */
+            border-radius: 15px; 
+            margin: 0; 
+            background-color: #1f1f1f; 
+            padding: 15px; 
             color:#ffffff;
             font-weight: bold;
         }
@@ -22,7 +22,7 @@
         }
         .carousel-item .btn {
             display: none;
-            margin: 5px; /* Add margin between buttons */
+            margin: 5px; 
         }
         .chart-container{
             margin-bottom: 20px;
@@ -202,7 +202,7 @@ function showButtons() {
             $(this).find('.start-btn').hide();
             $(this).find('.finish-btn').hide();
             $(this).find('.status').text('Sesja zakończona');
-            $(this).find('.timer-container').hide(); // Ukryj timer po zakończeniu sesji
+            $(this).find('.timer-container').hide(); 
         }
 
         if (now.isBetween(startTime.clone().subtract(15, 'minutes'), startTime.clone().add(30, 'minutes'))) {
@@ -277,7 +277,7 @@ $('.finish-btn').click(function() {
             setInterval(function() {
                 updateTimers();
                 showButtons();
-            }, 60000); // Update every minute
+            }, 60000); 
 
             updateTimers();
             showButtons();
@@ -286,7 +286,6 @@ $('.finish-btn').click(function() {
 
         document.addEventListener('DOMContentLoaded', function() {
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        // Prześlij strefę czasową do serwera
         fetch('/set-timezone', {
             method: 'POST',
             headers: {
@@ -328,7 +327,6 @@ $('.finish-btn').click(function() {
                 }
             }
         };
-        // Completion Chart
         const completionCtx = document.getElementById('completionChart').getContext('2d');
         new Chart(completionCtx, {
             type: 'doughnut',
@@ -348,7 +346,6 @@ $('.finish-btn').click(function() {
             }
         });
 
-        // Hours Chart
         const completedHoursPercentage = Number(stats.completed_training_hours)/10;
         const hoursCtx = document.getElementById('hoursChart').getContext('2d');
         new Chart(hoursCtx, {
@@ -363,7 +360,6 @@ $('.finish-btn').click(function() {
             
         });
 
-        // Style Chart
         const styleCtx = document.getElementById('styleChart').getContext('2d');
         new Chart(styleCtx, {
             type: 'pie',
@@ -383,7 +379,6 @@ $('.finish-btn').click(function() {
             }
         });
 
-        // Type Chart
         const typeCtx = document.getElementById('typeChart').getContext('2d');
         new Chart(typeCtx, {
             type: 'pie',
@@ -403,7 +398,6 @@ $('.finish-btn').click(function() {
             }
         });
 
-        // Intensity Chart
         const intensityCtx = document.getElementById('intensityChart').getContext('2d');
         new Chart(intensityCtx, {
             type: 'doughnut',

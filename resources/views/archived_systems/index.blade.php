@@ -48,7 +48,6 @@
             }
         }
     };
-    // Completion Chart
     const completionCtx = document.getElementById('completionChart').getContext('2d');
     new Chart(completionCtx, {
         type: 'doughnut',
@@ -68,7 +67,6 @@
         }
     });
 
-    // Hours Chart
     const completedHoursPercentage = Number(stats.completed_training_hours)/10;
     const hoursCtx = document.getElementById('hoursChart').getContext('2d');
     new Chart(hoursCtx, {
@@ -83,7 +81,6 @@
         
     });
 
-    // Style Chart
     const styleCtx = document.getElementById('styleChart').getContext('2d');
     new Chart(styleCtx, {
         type: 'pie',
@@ -103,7 +100,6 @@
         }
     });
 
-    // Type Chart
     const typeCtx = document.getElementById('typeChart').getContext('2d');
     new Chart(typeCtx, {
         type: 'pie',
@@ -123,7 +119,6 @@
         }
     });
 
-    // Intensity Chart
     const intensityCtx = document.getElementById('intensityChart').getContext('2d');
     new Chart(intensityCtx, {
         type: 'doughnut',

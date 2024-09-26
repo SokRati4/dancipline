@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-/* Form Container */
 .form-container {
     background-color: #2a2a2a;
     padding: 20px;
@@ -15,7 +14,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Elements */
 .form-container label {
     display: block;
     color: #ffffff;
@@ -28,7 +26,7 @@
 .form-container input[type="number"],
 .form-container textarea,
 .form-container select {
-    width: 100%; /* Ensures the element takes up the full width of the parent container */
+    width: 100%; 
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #444;
@@ -48,7 +46,6 @@
 }
 
 
-/* Form Heading */
 .form-container h1 {
     text-align: center;
     color: #ffffff;
@@ -111,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const endDate = moment(endDateInput.value);
         const oneYearLater = startDate.clone().add(1, 'years');
 
-        // Usuwamy sprawdzenie daty rozpoczęcia względem dzisiejszej daty
         if (endDate.isBefore(startDate)) {
             alert('Data zakończenia nie może być wcześniejsza niż data rozpoczęcia.');
             event.preventDefault();

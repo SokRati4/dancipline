@@ -71,7 +71,7 @@
         margin-bottom: 20px;
     }
     .attachment-image {
-        border-radius: 10px; /* Okrągłe granice */
+        border-radius: 10px;
         object-fit: cover; 
         max-width: 150px;
     }
@@ -135,7 +135,6 @@
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 
 <script>
-    // Inicjalizacja Quill
     const quill = new Quill('#editor', {
         theme: 'snow',
         modules: {
@@ -153,7 +152,6 @@
         document.querySelector('#content').value = quill.root.innerHTML;
     };
     document.addEventListener('DOMContentLoaded', function() {
-    // Sprawdź, czy załącznik już istnieje
     if (!document.querySelector('.attachment-item')) {
         document.getElementById('image').addEventListener('change', function() {
             const fileName = this.files[0] ? this.files[0].name : 'Nie wybrano pliku';

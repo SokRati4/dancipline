@@ -2,7 +2,7 @@
 @section('custom_styles')
 <style>
     .card-body p {
-    font-size: 1.2em; /* 2 razy większy niż domyślny rozmiar czcionki */
+    font-size: 1.2em;
     }
 </style>
 @endsection

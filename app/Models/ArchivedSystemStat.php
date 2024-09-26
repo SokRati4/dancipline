@@ -57,17 +57,13 @@ class ArchivedSystemStat extends Model
     ];
 
 
-    /**
-     * Get the user that owns the archived system stat.
-     */
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the training system that owns the archived system stat.
-     */
+
     public function trainingSystem()
     {
         return $this->belongsTo(TrainingSystem::class);
