@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Education')
 
 @section('custom_styles')
 <style>

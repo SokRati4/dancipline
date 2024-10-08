@@ -38,7 +38,6 @@
     }
 </style>
 @endsection
-@section('title', 'Title of the Page')
 @section('content')
 <div class="container">
     <h1 class="text-center mb-4">{{ $legend->partner1_name }} i {{ $legend->partner2_name }}</h1>

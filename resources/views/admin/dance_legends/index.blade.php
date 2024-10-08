@@ -4,7 +4,7 @@
     <h1>Dance Legends</h1>
     <form action="{{ route('admin.dance_legends.create') }}" method="GET">
         <button class="button-27-icon">
-            <i class="fas fa-add"></i> <!-- Ikona edycji -->
+            <i class="fas fa-add"></i> 
         </button>
     </form>
     @if (session('success'))
@@ -38,14 +38,14 @@
                     <td>
                         <form action="{{ route('admin.dance_legends.edit', $legend->id) }}" method="GET"  style="display:inline;">
                             <button class="button-27-icon">
-                                <i class="fas fa-edit"></i> <!-- Ikona edycji -->
+                                <i class="fas fa-edit"></i> 
                             </button>
                         </form>
                         <form action="{{ route('admin.dance_legends.destroy', $legend->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="button-27-icon" onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash-alt"></i> <!-- Ikona usunięcia -->
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>

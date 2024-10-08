@@ -75,7 +75,7 @@
                 <canvas id="typeChart" class="chart" ></canvas>
                 <canvas id="intensityChart" class="chart" ></canvas>
         </div>
-        @if ($weeklyStats['total_training_minutes'] != 0)
+        
         <div class="period">
             <h4>Statystyka tygodniowa z {{ \Carbon\Carbon::parse($weekStart)->translatedFormat('j F') }} po {{ \Carbon\Carbon::parse($weekEnd)->translatedFormat('j F') }}</h4>
         </div>
@@ -97,7 +97,7 @@
                 <p class="subtitle">dni treningowe w tym wygodniu</p>
             </div>
         </div>
-        @endif
+
         <div class="offcanvas offcanvas-start text-bg-dark" id="demo">
             <div class="offcanvas-header">
               <h1 class="offcanvas-title">Archiwum</h1>
